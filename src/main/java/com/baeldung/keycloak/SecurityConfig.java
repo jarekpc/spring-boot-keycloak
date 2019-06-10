@@ -40,13 +40,14 @@ class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
         return new RegisterSessionAuthenticationStrategy(new SessionRegistryImpl());
     }
 
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         super.configure(http);
         http.authorizeRequests()
-            .antMatchers("/customers*")
-            .hasRole("user")
-            .anyRequest()
-            .permitAll();
+                .antMatchers("/customers*","/check*")
+                .hasRole("user")
+                .anyRequest()
+                .permitAll();
     }
 }
